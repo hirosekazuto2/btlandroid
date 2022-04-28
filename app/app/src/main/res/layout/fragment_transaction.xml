@@ -46,6 +46,17 @@
                         android:layout_height="wrap_content"
 
                         android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/edttimkiem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tìm kiếm"/>
+
+                    <Button
+                        android:id="@+id/btntimkiem"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:text="Search"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -148,6 +159,7 @@
             style="@style/MediumValueBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

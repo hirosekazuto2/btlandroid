@@ -3,11 +3,14 @@ package vn.edu.fithou.quanlychitieu.fragment;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +25,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjuster;
-import java.time.temporal.TemporalAdjusters;
+//import java.time.DayOfWeek;
+//import java.time.LocalDate;
+//import java.time.temporal.TemporalAdjuster;
+//import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,9 +36,12 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.zip.Inflater;
 
 import vn.edu.fithou.quanlychitieu.R;
 import vn.edu.fithou.quanlychitieu.activity.AddTransaction;
+import vn.edu.fithou.quanlychitieu.activity.MainActivity;
+import vn.edu.fithou.quanlychitieu.activity.SearchActivity;
 import vn.edu.fithou.quanlychitieu.activity.TransactionDetail;
 import vn.edu.fithou.quanlychitieu.adapter.TransactionListViewAdapter;
 import vn.edu.fithou.quanlychitieu.model.Transaction;
@@ -56,6 +62,7 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
     private Date currentDate;
 
     private TextView tvTotalMoney, tvPreviousDate, tvNextPage, tvCurrentPage, tvNoTransaction;
+    private MainActivity mainActivity;
 
     SQLiteUtil sqLiteUtil;
 
@@ -69,12 +76,14 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
 
     FloatingActionButton fabAddTrans;
 
+    Button btntimkiem;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_transaction, container, false);
-
-         rvTransaction = rootView.findViewById(R.id.rvTransaction);
+        mainActivity= (MainActivity) getActivity();
+        rvTransaction = rootView.findViewById(R.id.rvTransaction);
 
         rootView.findViewById(R.id.transaction_next_page).setOnClickListener(this);
         rootView.findViewById(R.id.transaction_prev_page).setOnClickListener(this);
@@ -86,6 +95,8 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
         tvNoTransaction = rootView.findViewById(R.id.tvNoTransaction);
         swipeRefreshLayout = rootView.findViewById(R.id.srlTransaction);
         fabAddTrans = rootView.findViewById(R.id.btnAddTransaction);
+        btntimkiem=rootView.findViewById(R.id.btntimkiem);
+
 
         sqLiteUtil = new SQLiteUtil(getActivity());
 
@@ -110,7 +121,15 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
                 fetchAndFillData();
             }
         });
+        btntimkiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(mainActivity,SearchActivity.class);
+                startActivity(intent);
+            }
+        });
         return rootView;
+
     }
 
     @Override
@@ -196,6 +215,7 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
         }
         tvTotalMoney.setText(ConversionUtil.doubleToString(currentMoney));
 
+
     }
 
     @Override
@@ -215,4 +235,7 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
         intent.putExtra("id", transactionId);
         startActivity(intent);
     }
+
+
+
 }

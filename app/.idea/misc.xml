@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/android studio file lqv/android studio/app/app/src/main/res/layout/activity_add_transaction.xml" value="0.25416666666666665" />
+        <entry key="..\:/app/app/src/main/res/layout/activity_add_transaction.xml" value="0.25416666666666665" />
+        <entry key="..\:/app/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/app/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/app/app/src/main/res/layout/fragment_report.xml" value="0.25416666666666665" />
+        <entry key="..\:/app/app/src/main/res/layout/fragment_transaction.xml" value="0.4" />
+        <entry key="..\:/app/app/src/main/res/layout/row_statistic.xml" value="0.25416666666666665" />
+        <entry key="..\:/app/app/src/main/res/layout/row_trans_header.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
